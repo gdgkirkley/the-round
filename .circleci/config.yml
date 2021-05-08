@@ -4,11 +4,23 @@ version: 2.1
 orbs:
   node: circleci/node@4.1
 
-workflows:
-  sample:
-    jobs:
-      - node/test:
-          version: '15.1'
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
+jobs:
+  build:
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn format --check
+      - run: yarn lint
+      - run: yarn test --ci --coverage --reporters=default
+      - store_test_results:
+        path: test-results
+      - store_artifacts:
+        path: coverage
