@@ -26,3 +26,23 @@ jobs:
           path: test-results
       - store_artifacts:
           path: coverage
+  
+  deploy:
+    docker:
+      - image: cimg/node:14.16.1-browsers
+    steps:
+      - run:
+          command: curl -X POST -d {} ${hook}
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: main
+      - deploy:
+          filters:
+            branches:
+              only: main
