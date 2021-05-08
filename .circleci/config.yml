@@ -21,7 +21,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn format --check
       - run: yarn lint
-      - run: yarn test --ci --coverage --reporters=default
+      - run: yarn test:run --ci --coverage --reporters=default
       - store_test_results:
           path: test-results
       - store_artifacts:
