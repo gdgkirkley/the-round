@@ -28,6 +28,8 @@ jobs:
           path: coverage
   
   deploy:
+    docker:
+      - image: cimg/node:14.16.1-browsers
     steps:
       - run:
           command: curl -X POST -d {} ${hook}
