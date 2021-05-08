@@ -7,8 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier .",
-    "lint": "echo 'Running lint...' && eslint . --max-warnings=0",
+    "format": "prettier ./pages ./components",
+    "lint": "echo 'Running lint...' && eslint ./pages ./components --max-warnings=0",
     "test": "jest --watchAll=true",
     "test:run": "jest",
     "prepare": "husky install"
