@@ -9,18 +9,18 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run: yarn install
       - save_cache:
-        paths:
-          - node_modules
-        key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn format --check
       - run: yarn lint
       - run: yarn test --ci --coverage --reporters=default
       - store_test_results:
-        path: test-results
+          path: test-results
       - store_artifacts:
-        path: coverage
+          path: coverage
