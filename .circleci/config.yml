@@ -28,9 +28,6 @@ jobs:
           path: coverage
   
   deploy:
-    machine:
-      macos:
-        xcode: '9.0'
     steps:
       - run:
           command: curl -X POST -d {} ${hook}
