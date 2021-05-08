@@ -19,16 +19,20 @@ model Organization {
   seasons Season[]
   productions Production[]
   performances Performance[]
+  tickets Ticket[]
+  ticketTypes TicketType[]
 }
 
 model User {
   id String @id @default(uuid())
   first_name String
   last_name String
-  organizationId Int
-  organization Organization @relation(fields: [organizationId], references: [id])
-  roleId Int
-  roles Role @relation(fields: [roleId], references: [id])
+  organizationId Int?
+  organization Organization? @relation(fields: [organizationId], references: [id])
+  roleId Int?
+  roles Role? @relation(fields: [roleId], references: [id])
+  email String @unique
+  createdAt DateTime @default(now())
 }
 
 model Role {
@@ -74,6 +78,7 @@ model Performance {
   online Boolean
   videoId Int?
   video Video? @relation(fields: [videoId], references: [id])
+  performanceTickets PerformanceTicket[]
   createdAt DateTime @default(now())
   createUserId String
   updatedAt DateTime @updatedAt
@@ -90,3 +95,29 @@ model Video {
   performance Performance?
 }
 
+model PerformanceTicket {
+  id Int @id @default(autoincrement())
+  performanceId Int
+  performance Performance @relation(fields: [performanceId], references: [id])
+  ticketId Int
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+  price Int
+}
+
+model Ticket {
+  id Int @id @default(autoincrement())
+  name String
+  typeId Int
+  type TicketType @relation(fields: [typeId], references: [id])
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  performanceTickets PerformanceTicket[]
+}
+
+model TicketType {
+  id Int @id @default(autoincrement())
+  name String
+  tickets Ticket[]
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+}
