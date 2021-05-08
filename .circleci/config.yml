@@ -26,3 +26,25 @@ jobs:
           path: test-results
       - store_artifacts:
           path: coverage
+  
+  deploy:
+    machine:
+      macos:
+        xcode: '9.0'
+    steps:
+      - run:
+          name: Deploy
+          command: curl -X POST -d {} ${hook}
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: main
+      - deploy:
+          filters:
+            branches:
+              only: main
