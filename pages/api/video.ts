@@ -1,6 +1,6 @@
 import { Video } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '../../client';
+import prisma from '../../prisma/client';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'POST') {
