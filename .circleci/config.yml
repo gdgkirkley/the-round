@@ -33,6 +33,9 @@ jobs:
       - checkout
       - run: git checkout staging
       - run: git merge ${CIRCLE_BRANCH}
+      - add-ssh-keys:
+        fingerprints:
+          - "dd:ce:d0:d5:e0:26:e0:79:a3:4c:82:c9:ba:d5:20:c4"
       - run: git push origin staging
 
 workflows:
