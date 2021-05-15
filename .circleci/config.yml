@@ -44,8 +44,10 @@ workflows:
     jobs:
       - build
       - stage:
-        filters:
-          branches:
-            ignore:
-              - staging
-              - main
+          requires:
+            - build
+          filters:
+            branches:
+              ignore:
+                - staging
+                - main
