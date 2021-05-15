@@ -26,3 +26,21 @@ jobs:
           path: test-results
       - store_artifacts:
           path: coverage
+  stage:
+    steps:
+      - checkout
+      - run: git checkout staging
+      - run: git merge ${CIRCLE_BRANCH}
+      - run: git push origin staging
+
+workflows:
+  version: 2
+  deploy_staging:
+    jobs:
+      - build
+      - stage:
+        filters:
+          branches:
+            ignore:
+              - staging
+              - main
