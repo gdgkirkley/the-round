@@ -10,11 +10,114 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Organization {
+  id Int @id @default(autoincrement())
+  name String
+  image String
+  users User[]
+  roles Role[]
+  seasons Season[]
+  productions Production[]
+  performances Performance[]
+  tickets Ticket[]
+  ticketTypes TicketType[]
+}
+
+model User {
+  id String @id @default(uuid())
+  first_name String
+  last_name String
+  organizationId Int?
+  organization Organization? @relation(fields: [organizationId], references: [id])
+  roleId Int?
+  roles Role? @relation(fields: [roleId], references: [id])
+  email String @unique
+  createdAt DateTime @default(now())
+}
+
+model Role {
+  id Int @id @default(autoincrement())
+  name String
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  users User[]
+}
+
+model Season {
+  id Int @id @default(autoincrement())
+  name String
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  createdAt DateTime @default(now())
+  createUserId String
+  updatedAt DateTime @updatedAt
+}
+
+model Production {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  tags String[]
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  createdAt DateTime @default(now())
+  createUserId String
+  updatedAt DateTime @updatedAt
+  lastUpdateUser String
+  performances Performance[]
+}
+
+model Performance {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  productionId Int
+  production Production @relation(fields: [productionId], references: [id])
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  online Boolean
+  videoId Int?
+  video Video? @relation(fields: [videoId], references: [id])
+  performanceTickets PerformanceTicket[]
+  createdAt DateTime @default(now())
+  createUserId String
+  updatedAt DateTime @updatedAt
+  lastUpdateUser String
+}
+
 model Video {
   id Int @id @default(autoincrement())
   title String
   description String
   url String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  performance Performance?
 }
 
+model PerformanceTicket {
+  id Int @id @default(autoincrement())
+  performanceId Int
+  performance Performance @relation(fields: [performanceId], references: [id])
+  ticketId Int
+  ticket Ticket @relation(fields: [ticketId], references: [id])
+  price Int
+}
+
+model Ticket {
+  id Int @id @default(autoincrement())
+  name String
+  typeId Int
+  type TicketType @relation(fields: [typeId], references: [id])
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  performanceTickets PerformanceTicket[]
+}
+
+model TicketType {
+  id Int @id @default(autoincrement())
+  name String
+  tickets Ticket[]
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+}
