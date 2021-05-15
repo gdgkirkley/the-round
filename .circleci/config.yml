@@ -27,6 +27,8 @@ jobs:
       - store_artifacts:
           path: coverage
   stage:
+    docker:
+      - image: cimg/node:14.16.1-browsers
     steps:
       - checkout
       - run: git checkout staging
