@@ -3,7 +3,7 @@ import prisma from '../../../lib/prisma';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
-    const { email, secret } = JSON.parse(req.body);
+    const { email, secret } = req.body;
     if (secret !== process.env.AUTH0_HOOK_SECRET) {
       throw new Error('No secret');
     }
