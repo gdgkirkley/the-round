@@ -1,3 +1,5 @@
+import Button from 'components/common/Button';
+
 const Kitchen: React.FC = () => (
   <div>
     <h1>Kitchen</h1>
@@ -31,6 +33,30 @@ const Kitchen: React.FC = () => (
       <li>Testy</li>
       <li>Tester</li>
     </ul>
+
+    <Button type="button" role="button" size="small" inline={true}>
+      Grey Small
+    </Button>
+    <Button type="button" role="button" color="primary" inline={true}>
+      Primary Medium
+    </Button>
+    <Button type="button" role="button" color="accent" size="large">
+      Accent Large
+    </Button>
+    <Button type="button" role="button" color="accent" size="large" disabled={true}>
+      Accent Large
+    </Button>
+    <Button type="button" role="button" color="warning">
+      Warning
+    </Button>
+    <div style={{ background: 'yellow' }}>
+      <Button type="button" role="button" color="transparent">
+        Transparent
+      </Button>
+    </div>
+    <Button type="button" role="button" color="primary" inline={true} onClick={() => console.log('Clicked!')}>
+      Primary With On Click
+    </Button>
   </div>
 );
 

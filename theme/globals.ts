@@ -35,7 +35,7 @@ export default createGlobalStyle`
         --colorGrey300: #000;
 
         /* transparent colors */
-        --colorTransparentDarkGray: rgba(51, 51, 51, 0.8);
+        --colorTransparentDarkGrey: rgba(51, 51, 51, 0.8);
         --colorTransparentWhite: rgba(255, 255, 255, 0.8);
         --colorTransparentGrey60: rgba(0, 0, 0, 0.06);
         --colorTransparentGrey100: rgba(0, 0, 0, 0.1);
@@ -51,6 +51,11 @@ export default createGlobalStyle`
         --level2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         --level3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         --level4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    *:focus {
+        outline: none;
+        box-shadow: 0 0 0 2pt var(--colorBlue100);
     }
 
     html {
