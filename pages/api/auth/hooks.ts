@@ -7,7 +7,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     if (secret !== process.env.AUTH0_HOOK_SECRET) {
       throw new Error('No secret');
     }
-    prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         email,
         first_name: '',
@@ -15,7 +15,10 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       },
     });
 
-    console.log('created user');
+    if (user) {
+      console.log('created user');
+      res.json(user);
+    }
   } catch (error) {
     console.log(error);
   } finally {
