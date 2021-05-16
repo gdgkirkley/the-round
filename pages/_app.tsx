@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import GlobalStyle from 'theme/globals';
+import BasePage from 'components/BasePage';
 
 export default function App({ Component, pageProps }: AppProps): React.ReactElement {
   return (
@@ -12,7 +13,9 @@ export default function App({ Component, pageProps }: AppProps): React.ReactElem
       </Head>
       <UserProvider>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <BasePage>
+          <Component {...pageProps} />
+        </BasePage>
       </UserProvider>
     </>
   );

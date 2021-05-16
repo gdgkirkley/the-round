@@ -43,7 +43,7 @@ export default createGlobalStyle`
         --colorTransparentGrey800: rgba(0, 0, 0, 0.8);
 
         /* intent colors */
-        --background: var(----colorGrey0);
+        --background: var(--colorGrey0);
         --textColor: var(--colorGrey200);
 
         /* elevation */
@@ -62,7 +62,7 @@ export default createGlobalStyle`
     body {
         margin: 0;
         background: var(--background);
-        color: --textColor;
+        color: var(--textColor);
         font-family: 'Karla', sans-serif;
         font-weight: 400;
         line-height: 1.75;
@@ -168,5 +168,10 @@ export default createGlobalStyle`
 
     fieldset {
         padding: 0.35em 0.75em 0.625em;
+    }
+
+    .dark {
+        --background: var(--colorMidnight);
+        --textColor: var(--colorGrey0);
     }
 `;
