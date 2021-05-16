@@ -46,20 +46,20 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   type = 'button',
   ...props
 }) => {
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     onClick && onClick(event);
   };
 
-  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {};
+  // const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>): void => {};
 
   if (role === 'link') {
-    let linkProps = props as LinkButton;
+    const linkProps = props as LinkButton;
     return (
       <LinkButtonStyles
         aria-label={accessibilityLabel}
         href={linkProps.href}
         rel={linkProps.rel}
-        onClick={handleLinkClick}
+        // onClick={handleLinkClick}
         type="button"
         role="link"
         size={size}
@@ -89,7 +89,7 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   }
 
   if (role === 'button' && type === 'button') {
-    let buttonProps = props as Button;
+    const buttonProps = props as Button;
     return (
       <ButtonStyles
         aria-haspopup={buttonProps.accessibilityHasPopup}
