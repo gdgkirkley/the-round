@@ -1,4 +1,4 @@
-const Kitchen = () => (
+const Kitchen: React.FC = () => (
   <div>
     <h1>Kitchen</h1>
     <p>

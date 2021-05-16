@@ -12,7 +12,7 @@ const Main = styled.main`
   min-height: calc(100vh - 300px);
 `;
 
-const BasePage: React.FC<React.PropsWithChildren<any>> = ({ children }) => (
+const BasePage: React.FC = ({ children }) => (
   <Page className="dark">
     <Meta />
     <Main>{children}</Main>
