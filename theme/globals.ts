@@ -89,10 +89,26 @@ export default createGlobalStyle`
     h5 {font-size: 1.25rem;}
 
     small, .text_small {font-size: 0.8rem;}
+    
+    P {
+        max-width: 40em;
+    }
 
     a {
         background-color: transparent;
         color: var(--colorGold100);
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+    }
+
+    a:hover {
+        color: var(--colorGold80);
+        border-bottom: 1px solid var(--colorGold80);
+    }
+
+    a:focus {
+        outline: none;
+        border-bottom: 1px solid var(--colorGold80);
     }
 
     b,
