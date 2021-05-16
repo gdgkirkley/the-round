@@ -21,7 +21,6 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     }
   } catch (error) {
     console.log(error);
-  } finally {
     res.json({ received: true });
   }
 };
