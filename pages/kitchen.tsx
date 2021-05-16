@@ -44,7 +44,7 @@ const Kitchen: React.FC = () => (
       Accent Large
     </Button>
     <Button type="button" role="button" color="accent" size="large" disabled={true}>
-      Accent Large
+      Accent Large Disabled
     </Button>
     <Button type="button" role="button" color="warning">
       Warning

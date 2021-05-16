@@ -93,6 +93,8 @@ export default createGlobalStyle`
 
     h5 {font-size: 1.25rem;}
 
+    h6 {font-size: 1rem;}
+
     small, .text_small {font-size: 0.8rem;}
     
     P {

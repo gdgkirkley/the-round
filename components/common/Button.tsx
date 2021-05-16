@@ -42,6 +42,8 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   size = 'medium',
   name,
   children,
+  role = 'button',
+  type = 'button',
   ...props
 }) => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -50,12 +52,13 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
 
   const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {};
 
-  if (props.role === 'link') {
+  if (role === 'link') {
+    let linkProps = props as LinkButton;
     return (
       <LinkButtonStyles
         aria-label={accessibilityLabel}
-        href={props.href}
-        rel={props.rel}
+        href={linkProps.href}
+        rel={linkProps.rel}
         onClick={handleLinkClick}
         type="button"
         role="link"
@@ -68,7 +71,7 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
     );
   }
 
-  if (props.role === 'button' && props.type === 'submit') {
+  if (role === 'button' && type === 'submit') {
     return (
       <ButtonStyles
         aria-label={accessibilityLabel}
@@ -85,10 +88,11 @@ const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
     );
   }
 
-  if (props.role === 'button' && props.type === 'button') {
+  if (role === 'button' && type === 'button') {
+    let buttonProps = props as Button;
     return (
       <ButtonStyles
-        aria-haspopup={props.accessibilityHasPopup}
+        aria-haspopup={buttonProps.accessibilityHasPopup}
         aria-label={accessibilityLabel}
         disabled={disabled}
         name={name}
